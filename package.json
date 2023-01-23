@@ -1,0 +1,25 @@
+{
+  "name": "planebot",
+  "version": "0.0.1",
+  "description": "Bot Discord de PlaneSky",
+  "main": "index.js",
+  "scripts": {
+    "test": "pm2 start index.js --attach"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blueskin8/PlaneBot.git"
+  },
+  "keywords": [
+    "planesky"
+  ],
+  "author": "blueskin8, Demonloup",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blueskin8/PlaneBot/issues"
+  },
+  "homepage": "https://github.com/blueskin8/PlaneBot#readme",
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  }
+}
