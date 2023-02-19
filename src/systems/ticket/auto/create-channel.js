@@ -8,6 +8,20 @@ module.exports = {
      * @param {Discord.ButtonInteraction} interaction 
      */
     execute: (Client, interaction) => {
+
+        let chList = new Array();
+        interaction.guild.channels.cache.get(config.configuration.categorieTicket).children.cache.forEach((ch) => {
+            if(ch.name.includes(interaction.member.displayName)) {
+                chList.push(ch)
+            }
+        })
+        if(chList.length >= 3) return interaction.reply({ embeds: [
+            new Discord.EmbedBuilder()
+                .setTitle('Erreur')
+                .setColor('Red')
+                .setDescription('Vous avez deja atteint le maximum de tickets (3 tickets max) !')
+        ], ephemeral: true })
+
         interaction.guild.channels.create({
             name: "✉️┃ticket-" + interaction.member.displayName,
             parent: config.configuration.categorieTicket,
