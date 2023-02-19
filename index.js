@@ -7,9 +7,17 @@ const Client = new Discord.Client(
     }
 )
 
+Client.on('ready', () => {
+    require('./src/handler/Events/ready.js')(Client)
+})
 Client.on('messageCreate', message => {
     require('./src/handler/Events/messageCreate.js')(Client, message)
 })
 Client.on('interactionCreate', interaction => {
     require('./src/handler/Events/interactionCreate.js')(Client, interaction)
 })
+
+Client.login(config.application.token)
+
+module.exports.config = config
+module.exports.Client = Client

@@ -4,7 +4,8 @@
   "description": "Bot Discord de PlaneSky",
   "main": "index.js",
   "scripts": {
-    "test": "pm2 start index.js --attach"
+    "start": "pm2 start index.js --attach",
+    "stop": "pm2 stop index.js"
   },
   "repository": {
     "type": "git",
