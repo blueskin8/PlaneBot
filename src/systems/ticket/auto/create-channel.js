@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const LogLine = require('../../logs/LogLine')
 const config = require('../../../../config')
 
 module.exports = {
@@ -60,7 +61,9 @@ module.exports = {
                         .setTitle('Voici votre ticket ' + interaction.member.displayName)
                         .setColor(config.application.color)
                         .setDescription('Votre ticket à bien été crée dans le channel <#' + channel.id + ">")
-                ], ephemeral: true })
+                ], ephemeral: true }).then(() => {
+                    new LogLine('Ticket', "Un ticket à été crée : " + channel.url)
+                })
             })
         })
     }

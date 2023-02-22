@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const LogLine = require('../../logs/LogLine')
 const config = require('../../../../config')
 
 module.exports = {
@@ -25,6 +26,8 @@ module.exports = {
                     ]
                 })
             })
+        }).then(() => {
+            new LogLine("Ticket", "Les permissions de " + Client.users.cache.get(idUser).tag + " ont été retirées")
         })
     }
 }

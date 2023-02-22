@@ -7,10 +7,10 @@ const statut = require('../../systems/pterodactyl/statut.js')
  * @param {Discord.Client} Client 
  */
 module.exports = async (Client) => {
-    
     Client.user.setPresence(config.application.presence)
 
     await Client.application.commands.create(require('../../systems/ticket/commands/create-ticket-message.js').data)
+    await Client.application.commands.create(require('../../systems/newMember/welcomeMessage.js').data)
 
     console.log('  _____  _                  ____        _                   __           _   _                        _   _ ')
     console.log(' |  __ \\| |                |  _ \\      | |                 /_/          | | (_)                      | | | |')
@@ -22,4 +22,8 @@ module.exports = async (Client) => {
     console.log('                                                   |_|                                                      ')
 
     //statut.getStatus()    
+
+    setTimeout(() => {
+        require('../../systems/logs/init.js').initLogs(Client)
+    }, 1000)
 }
