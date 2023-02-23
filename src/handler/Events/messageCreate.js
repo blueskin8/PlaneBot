@@ -8,5 +8,5 @@ const LogLine = require('../../systems/logs/LogLine.js')
  * @param {Discord.Message} message 
  */
 module.exports = (Client, message) => {
-    new LogLine('BotLog', `nouveau message : \n    Contenu : ${message.content.toString().split('\n').join('\n              ')}\n    Auteur : ${message.author.id} : ${message.author.tag}; MessageId: ${message.id}\n    MessageChannel : ${message.channel.name} ; ${message.channel.id}\nMessageURL : ${message.url}`)
+    new LogLine('BotLog', `nouveau message : \n    Contenu : ${message.content.toString().split('\n').join('\n              ')}\n    Auteur : ${message.author.id} : ${message.author.tag}; MessageId: ${message.id}\n    MessageChannel : ${message.channel.name} ; ${message.channel.id}\n    MessageURL : ${message.url}`)
 }
