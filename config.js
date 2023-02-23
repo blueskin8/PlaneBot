@@ -17,6 +17,7 @@ module.exports = {
     },
     configuration: {
         categorieTicket: "872174157637517322",
-        staffRole: "1076848873022160927"
+        staffRole: "1076848873022160927",
+        privatevoice: "929491423844241488"
     }
 }

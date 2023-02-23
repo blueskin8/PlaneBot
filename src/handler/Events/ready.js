@@ -7,7 +7,7 @@ const statut = require('../../systems/pterodactyl/statut.js')
  * @param {Discord.Client} Client 
  */
 module.exports = async (Client) => {
-    
+
     Client.user.setPresence(config.application.presence)
 
     await Client.application.commands.create(require('../../systems/ticket/commands/create-ticket-message.js').data)

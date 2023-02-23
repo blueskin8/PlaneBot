@@ -10,6 +10,9 @@ const Client = new Discord.Client(
 Client.on('ready', () => {
     require('./src/handler/Events/ready.js')(Client)
 })
+Client.on("voiceStateUpdate", (oldState, newState) => {
+    require('./src/handler/Events/voiceStateUpdate.js')(Client, oldState, newState)
+})
 Client.on('messageCreate', message => {
     require('./src/handler/Events/messageCreate.js')(Client, message)
 })
