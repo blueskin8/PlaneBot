@@ -13,11 +13,16 @@ module.exports = {
             activities: [{
                 name: "être en développement"
             }]
-        }
+        },
+        botAdmin: [
+            "570276156960669697", //id blueskin8
+            "622319126915842048" // id freezmod
+        ]
     },
     configuration: {
         categorieTicket: "872174157637517322",
         staffRole: "1076848873022160927",
-        privatevoice: "929491423844241488"
+        privatevoice: "929491423844241488",
+        bienvenueChannel: "872174167385059328"
     }
 }

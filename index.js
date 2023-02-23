@@ -16,8 +16,14 @@ Client.on("voiceStateUpdate", (oldState, newState) => {
 Client.on('messageCreate', message => {
     require('./src/handler/Events/messageCreate.js')(Client, message)
 })
+Client.on('messageDelete', message => {
+    require('./src/handler/Events/messageDelete.js')(Client, message)
+})
 Client.on('interactionCreate', interaction => {
     require('./src/handler/Events/interactionCreate.js')(Client, interaction)
+})
+Client.on('guildBanAdd', member => {
+    require('./src/handler/Events/guildMemberAdd.js')(Client, member)
 })
 
 Client.login(config.application.token)
