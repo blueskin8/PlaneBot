@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const config = require('../../../config.js')
+const LogLine = require('../../systems/logs/LogLine')
 
 /**
  * Quand il y a une interaction avec un channel vocal

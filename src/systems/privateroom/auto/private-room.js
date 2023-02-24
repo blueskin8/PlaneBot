@@ -16,15 +16,16 @@ module.exports = async (Client, oldState, newState) => {
     permissionOverwrites: [
       {
         id: privateroom.members.toJSON()[0].user.id,
-        allow: ["Connect", "ManageChannels"]
+        allow: ["Connect", "ManageChannels", "CreateInstantInvite", "ManageMessages"]
       },
       {
         id: everyone,
-        deny: ["Connect", "ViewChannel"]
+        allow: ["Speak", "Stream", "ReadMessageHistory"],
+        deny: ["Connect", "ViewChannel", "CreateInstantInvite", "UseApplicationCommands"]
       },
       { // @Aventurier
         id: "872174151257980929",
-        allow: ["ViewChannel"]
+        allow: ["ViewChannel", "SendMessages", "AddReactions", "UseExternalEmojis", "UseExternalStickers"]
       }
     ]
   }).then((ch) => {
