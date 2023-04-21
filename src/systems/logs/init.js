@@ -12,7 +12,7 @@ module.exports.initLogs = (Client) => {
         if(err) throw err
         const date = data.toString().split('\n')[0]
         const fileName = date.replaceAll(' ', '+').replaceAll(':', '-').replaceAll('/', '-')
-        fs.writeFile('./logs/' + fileName, data.toString(), (err) => {
+        fs.writeFile('./logs/' + fileName + ".log", data.toString(), (err) => {
             if(err) throw err
             fs.writeFile('./logs/latest.log', `${new Date().toLocaleString()}\n[${new Date().toLocaleString()}] [LogSystem] Système de logs initialisé`, (err) => {
                 if(err) throw err

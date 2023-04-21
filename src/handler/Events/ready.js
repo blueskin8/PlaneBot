@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const config = require('../../../config.js')
 const statut = require('../../systems/pterodactyl/statut.js')
+const LogLine = require('../../systems/logs/LogLine')
 
 /**
  * Quand le bot est lancé
@@ -25,5 +26,7 @@ module.exports = async (Client) => {
 
     setTimeout(() => {
         require('../../systems/logs/init.js').initLogs(Client)
+        new LogLine('Bot', config.application.name + ' opérationnel')
+        require('../../panel/startPanel')
     }, 1000)
 }

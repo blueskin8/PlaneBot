@@ -1,0 +1,78 @@
+.c1 { color: #373869; }
+.c2 { color: #7f81f5; }
+.c3 { color: #5e60b5; }
+.c4 { color: #3d3e75; }
+.c5 { color: #292a4f; }
+* { --c1: #373869; --c2: #7f81f5; --c3: #5e60b5; --c4: #3d3e75; --c5: #292a4f; --d1: #151044; --d2: #352F6F; }
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Secular+One&display=swap');
+
+body {
+    margin: 0px;
+    color: #ffffff;
+    font-family: 'Jost', sans-serif;
+    background-color: var(--d1);
+}
+
+#title {
+    user-select: none;
+    margin: 0px;
+    font-size: 4vh;
+    margin-left: 1vw;
+    margin-top: 1vh;
+}
+
+#navbar {
+    user-select: none;
+    top: 9vh;
+    position: absolute;
+    left: 1vw;
+    width: 15vw;
+    height: 89vh;
+    background: linear-gradient(0deg, rgba(127, 129, 245,0.3) 0%, rgba(55, 56, 105,0.45) 100%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+}
+
+#ul {
+    padding: 7%;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    transition: 0.3s;
+    font-size: 2.3vh;
+}
+
+ul#app li:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    color: gray;
+}
+
+#main {
+    top: 9vh;
+    position: absolute;
+    height: 89vh;
+    width: 78vw;
+    left: 20vw;
+    background: rgba( 94, 96, 181, 0.2 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+}
+
+#main p {
+    margin: 2.5%;
+    font-size: 3vh;
+}
+
+#fl {
+    user-select: none;
+}
