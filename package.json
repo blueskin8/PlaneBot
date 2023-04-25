@@ -4,8 +4,7 @@
   "description": "Bot Discord de PlaneSky",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start index.js --attach",
-    "stop": "pm2 stop index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +24,7 @@
     "@sapphire/async-queue": "^1.5.0",
     "canvas": "^2.11.0",
     "discord.js": "^14.7.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodeactyl": "^3.3.0"
   }
 }

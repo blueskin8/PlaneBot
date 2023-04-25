@@ -16,7 +16,8 @@ module.exports = {
         },
         botAdmin: [
             "570276156960669697", //id blueskin8
-            "622319126915842048" // id freezmod
+            "622319126915842048", //id freezmod
+            "634830025996107819"  //id demonloup
         ]
     },
     configuration: {

@@ -5,7 +5,7 @@ module.exports = {
         icon: "https://planesky.fr/storage/img/logo.png",
         color: "#29D660",
         pterodactyl: {
-            token: "ptlc_SIbB7pbrVbyMQnyWcXawlTVMQUUC0RmUUHDe2JAB0y5",
+            token: "ptlc_xvVNE69YoWGQ0jhoFgEevPjw47FMekaaBCV0ZBEtlfJ",
             link: "https://ptero.by-hoster.net"
         },
         presence: {
@@ -16,14 +16,16 @@ module.exports = {
         },
         botAdmin: [
             "570276156960669697", //id blueskin8
-            "622319126915842048" // id freezmod
+            "622319126915842048", //id freezmod
+            "634830025996107819"  //id demonloup
         ]
     },
     configuration: {
         categorieTicket: "872174157637517322",
         staffRole: "1076848873022160927",
         privatevoice: "929491423844241488",
-        bienvenueChannel: "872174167385059328"
+        bienvenueChannel: "872174167385059328",
+        statutChannel: "872174178462224384"
     },
     panel: {
         validIPs: ["::1", "::ffff:192.168.0.254"] // IP de blueskin8

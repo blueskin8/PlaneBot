@@ -1,14 +1,38 @@
 const config = require('../../../config');
+const Nodeactyl = require('nodeactyl');
+const Discord = require('discord.js')
 
-module.exports.getStatus = () => {
-    fetch(config.application.pterodactyl.link + "/api/client/servers/7172342f", {
-        "method": "GET",
-        "headers": {
-            "Accept": "application/json",
-            "Authorization": config.application.pterodactyl.token,
-            "cookie": "pterodactyl_session=eyJpdiI6Ijh2dm1hNU1RN3VyWUdsVHZuaHFhQ2c9PSIsInZhbHVlIjoibXJJcnNsNllQQVpEdWY0cXhZWXdsQUd4Y3lGRkpyNFlFM21hYzVZWmlIb0pmaVFkTmNXNVFFNlBZTGRoaHJHYytWeG9keWxyNlBBWjZOc2t5dTMrdkEzbkdCTmN5TzZDWXdpaHlQV1R3ZWUzSWxVY2lXZCtLZFBTczRPMmk3TmsiLCJtYWMiOiI3MmYxN2YwYWQ5N2QwZWI5MTE3ZTMzMTEzNDMwZTEwZjQ3NjRiNzEwYjU0NDE3ZWQwMmM1YWVhY2M1ZDJiMmQ1IiwidGFnIjoiIn0%3D"
-        }
+/**
+ * 
+ * @param {Nodeactyl.NodeactylClient} ptero 
+ * @param {Discord.Client} Client
+ */
+module.exports.getStatus = async (ptero, Client) => {
+    let serverStatut, channelName;
+    await ptero.getServerStatus("7172342f-0162-46c0-a216-d0a317f66d06").then(value => {
+        serverStatut = value
     })
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+
+    if (serverStatut == 'running') {
+        channelName = "En ligne <:enligne:872830925728251925>"
+    } else if (serverStatut == 'starting') {
+        channelName = "Démarrage <:maintenance:872830926076411924>"
+    } else if (serverStatut == 'offline') {
+        channelName = "Éteint <:erreur:872830925602435093>"
+    } else if (serverStatut == 'stopping') {
+        channelName = "Éteint <:erreur:872830925602435093>"
+    } else {
+        console.log("erreur statut")
+    }
+    Client.channels.cache.get("1099304494447218708").messages.fetch("1099312877581647962").then(msg => msg.edit({
+        embeds: [new Discord.EmbedBuilder()
+            .setTitle("📈 Statut de PlaneSky")
+            .addFields(
+                { name: "Serveur Minecraft: ", value: channelName, inline: true }, //ajouter les ms
+                { name: "Site Internet: ", value: "En ligne <:enligne:872830925728251925>", inline: true }
+            )
+            .setColor(config.application.color)
+            .setFooter({ text: "Par " + config.application.name, iconURL: config.application.icon })
+        ]
+    }))
 }
