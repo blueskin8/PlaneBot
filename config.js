@@ -3,7 +3,7 @@ module.exports = {
         name: "PlaneBot",
         token: "MTA2Njc2NzMwNDk3MDQ3NzY4Mg.GP523T.GMSiMMTK5GPtDJvou9l3AX_0CIHP0OrP2FL7h4",
         icon: "https://planesky.fr/storage/img/logo.png",
-        color: "#29D660",
+        color: 0x29D660,
         pterodactyl: {
             token: "ptlc_xvVNE69YoWGQ0jhoFgEevPjw47FMekaaBCV0ZBEtlfJ",
             link: "https://ptero.by-hoster.net"

@@ -13,7 +13,7 @@ module.exports = {
         interaction.channel.messages.fetch().then(msgs => {
             idUser = msgs.last().embeds[0].description.split(':')[1].replaceAll(' ', '')
             interaction.channel.permissionOverwrites.delete(Client.users.cache.get(idUser)).then(() => {
-                interaction.reply(`Permissions de ${Client.users.cache.get(idUser).tag} retirées`)
+                interaction.reply(`Permissions de ${Client.users.cache.get(idUser)} retirées`)
                 interaction.message.edit({
                     components: [
                         new Discord.ActionRowBuilder()
@@ -27,7 +27,7 @@ module.exports = {
                 })
             })
         }).then(() => {
-            new LogLine("Ticket", "Les permissions de " + Client.users.cache.get(idUser).tag + " ont été retirées")
+            new LogLine("Ticket", "Les permissions de " + Client.users.cache.get(idUser) + " ont été retirées")
         })
     }
 }

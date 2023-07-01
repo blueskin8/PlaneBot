@@ -1,8 +1,11 @@
 const Discord = require('discord.js')
 const config = require('../../../config.js')
+const fs = require('fs')
 const statut = require('../../systems/pterodactyl/statut.js')
 const LogLine = require('../../systems/logs/LogLine')
 const Nodeactyl = require('nodeactyl');
+const { dir } = require('console')
+const giveaway = true
 
 /**
  * Quand le bot est lancé
@@ -13,8 +16,26 @@ module.exports = async (Client) => {
 
     Client.user.setPresence(config.application.presence)
 
-    await Client.application.commands.create(require('../../systems/ticket/commands/create-ticket-message.js').data)
-    await Client.application.commands.create(require('../../systems/newMember/welcomeMessage.js').data)
+    const commandFile = fs.readdirSync('D:\\Application\\Github\\PlaneBot\\src\\systems')
+    try {
+        commandFile.forEach(async uwu => {
+            fs.readdirSync("D:\\Application\\Github\\PlaneBot\\src\\systems\\" + uwu).filter(async commandFolder => {
+                if (commandFolder.endsWith(".js")) {
+                    if (require("../../systems/" + uwu + "/" + commandFolder).data) {
+                        await Client.application.commands.create(require("../../systems/" + uwu + "/" + commandFolder).data)
+                    }
+                }
+            })
+        })
+    } catch (err) {
+        console.log(err)
+    }
+
+
+    // await Client.application.commands.create(require('../../systems/ticket/commands/create-ticket-message.js').data)
+    // await Client.application.commands.create(require('../../systems/newMember/welcomeMessage.js').data)
+    // await Client.application.commands.create(require('../../systems/giveaway/commands/giveaway-create.js').data)
+    await Client.application.commands.create(require('../../systems/sondage/commands/sondage.js').data)
 
     console.log('  _____  _                  ____        _                   __           _   _                        _   _ ')
     console.log(' |  __ \\| |                |  _ \\      | |                 /_/          | | (_)                      | | | |')
@@ -29,9 +50,11 @@ module.exports = async (Client) => {
     let info;
 
     await ptero.getServerStatus("7172342f-0162-46c0-a216-d0a317f66d06").then(value =>
-        status = value)
-    await ptero.getAllServers().then(value =>
-        info = value)
+        status = value).catch(err => {
+            console.log("Pterodactyl error: " + err)
+        })
+    // await ptero.getAllServers().then(value =>
+    //     info = value)
     // info.data.forEach(server =>
     //     console.log(server.attributes.name + " " + server.attributes.uuid + " " + server.attributes.relationships.allocations.data[0].attributes.ip + ":" + server.attributes.relationships.allocations.data[0].attributes.port))
 
@@ -39,6 +62,10 @@ module.exports = async (Client) => {
         require('../../systems/logs/init.js').initLogs(Client)
         new LogLine('Bot', config.application.name + ' opérationnel')
         require('../../panel/startPanel')
+    }, 1000)
+
+    setInterval(() => {
+        require('../../systems/giveaway/auto/giveaway-timestamp.js').execute(Client)
     }, 1000)
 
     setInterval(() => {

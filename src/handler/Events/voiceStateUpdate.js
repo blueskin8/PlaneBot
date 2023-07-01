@@ -38,7 +38,7 @@ module.exports = (Client, oldState, newState) => {
   if (newState.channelId === null) {
     // console.log('a user left!')
     newState.guild.channels.cache.get(config.configuration.privatevoice).parent.children.cache.forEach((ch) => {
-      if (ch.name.includes('Salon de')) {
+      if (ch.name.includes('| Salon privé 🔒')) {
         if (!ch.members.toJSON()[0]) {
           ch.delete()
         }

@@ -10,13 +10,13 @@ module.exports = async (Client, oldState, newState) => {
   const privateroom = Client.channels.cache.get(config.configuration.privatevoice)
   const everyone = oldState.guild.roles.everyone.id
   oldState.guild.channels.create({
-    name: `Salon de ${privateroom.members.toJSON()[0].user.username}`,
+    name: `🔊 ${privateroom.members.toJSON()[0].user.username} | Salon privé 🔒`,
     type: Discord.ChannelType.GuildVoice,
     parent: privateroom.parentId,
     permissionOverwrites: [
       {
         id: privateroom.members.toJSON()[0].user.id,
-        allow: ["Connect", "ManageChannels", "CreateInstantInvite", "ManageMessages"]
+        allow: ["Connect", "ManageChannels", "CreateInstantInvite", "ManageMessages", "PrioritySpeaker", "UseSoundboard"]
       },
       {
         id: everyone,
