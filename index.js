@@ -3,7 +3,8 @@ const config = require('./config.js')
 
 const Client = new Discord.Client(
     {
-        intents: ["GuildBans", "GuildEmojisAndStickers", "GuildIntegrations", "GuildInvites", "GuildMembers", "GuildMessageReactions", "GuildMessageTyping", "GuildMessages", "GuildPresences", "GuildScheduledEvents", "GuildVoiceStates", "GuildWebhooks", "Guilds", "MessageContent"]
+        intents: ["GuildBans", "GuildEmojisAndStickers", "GuildIntegrations", "GuildInvites", "GuildMembers", "GuildMessageReactions", "GuildMessageTyping", "GuildMessages", "GuildPresences", "GuildScheduledEvents", "GuildVoiceStates", "GuildWebhooks", "Guilds", "MessageContent"],
+        partials: [Discord.Partials.Reaction, Discord.Partials.Message, Discord.Partials.Channel]
     }
 )
 
@@ -24,6 +25,12 @@ Client.on('interactionCreate', interaction => {
 })
 Client.on('guildBanAdd', member => {
     require('./src/handler/Events/guildMemberAdd.js')(Client, member)
+})
+Client.on("messageReactionAdd", (react, user) => {
+    require('./src/handler/Events/messageReactionAdd')(Client, react, user)
+})
+Client.on("messageReactionRemove", (react, user) => {
+    require('./src/handler/Events/messageReactionRemove')(Client, react, user)
 })
 
 Client.login(config.application.token)

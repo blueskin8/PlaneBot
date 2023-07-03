@@ -60,9 +60,9 @@ module.exports = {
     data: new Discord.SlashCommandBuilder()
         .setName('sondage')
         .setDescription('lancer un sondage/terminé un sondage en entrant un id de message')
-        .addStringOption(question => question.setName("question").setDescription('Question du sondage').setRequired(true))
-        .addStringOption(question => question.setName("réponses").setDescription('Réponses du sondage | sauter un espace = nouvelle réponse, entre guillemets = longue réponse').setRequired(true))
-        .addStringOption(id => id.setName("id").setDescription('ID du sondage à terminer')),
+        .addStringOption(question => question.setName("question").setDescription('Question du sondage'))
+        .addStringOption(question => question.setName("réponses").setDescription('Réponses du sondage | sauter un espace = nouvelle réponse, entre guillemets = longue réponse'))
+        .addNumberOption(id => id.setName("id").setDescription('ID du sondage à terminer')),
     /**
      * @param {Discord.Client} Client
      * @param {Discord.CommandInteraction} interaction
@@ -70,25 +70,47 @@ module.exports = {
     execute: async (Client, interaction) => {
         let questionEmbed = interaction.options.getString("question")
         let reponsesEmbed = interaction.options.getString("réponses")
-        let resultats = separerMotsPhrases(reponsesEmbed);
-        if (resultats.length > 11) {
-            interaction.reply({ content: "Le maximum de réponses est 11 !", ephemeral: true })
-        } else {
-            let textEmbed = []
-            for (let i = 0; i < resultats.length; i++) {
-                textEmbed.push(`${chiffreEnLettre(i)} ` + resultats[i])
-            }
-            let sondage = await interaction.reply({
+        let idEmbed = interaction.options.getNumber("id")
+        if (questionEmbed && !reponsesEmbed && !idEmbed) {
+            let sondageEmbed = await interaction.reply({
                 embeds: [{
                     title: questionEmbed,
+                    thumbnail: { url: config.application.icon },
                     color: config.application.color,
-                    description: textEmbed.join('\n'),
+                    fields: [{ name: "<:jaime:872830926072213554> Oui", value: "**[➖➖➖➖➖]**" },
+                    { name: "<:jenaimepas:872830925984137296> Non", value: "**[➖➖➖➖➖]**" }],
                     footer: { text: `Par ${interaction.user.username}`, icon_url: interaction.user.avatarURL() },
                     timestamp: new Date().toISOString(),
                 }], fetchReply: true
             })
-            for (let i = 0; i < resultats.length; i++) {
-                sondage.react(chiffreEnLettre(i))
+            await sondageEmbed.react("<:jaime:872830926072213554>")
+            await sondageEmbed.react("<:jenaimepas:872830925984137296>")
+        }
+        if (!questionEmbed && reponsesEmbed && !idEmbed) return interaction.reply({ content: 'Vous devez mettre une question si vous entrez des réponses !', ephemeral: true })
+        if ((questionEmbed || reponsesEmbed) && idEmbed) return interaction.reply({ content: 'Pour créer un sondage/finir un sondage: ne mettez pas question et réponses avec id', ephemeral: true })
+        if (!questionEmbed && !reponsesEmbed && idEmbed) return interaction.channel.i
+        if (questionEmbed && reponsesEmbed && !idEmbed) {
+            let resultats = separerMotsPhrases(reponsesEmbed);
+            if (resultats.length > 11) {
+                interaction.reply({ content: "Le maximum de réponses est 11 !", ephemeral: true })
+            } else {
+                let textEmbed = []
+                for (let i = 0; i < resultats.length; i++) {
+                    textEmbed.push(`${chiffreEnLettre(i)} ` + resultats[i])
+                }
+                let sondage = await interaction.reply({
+                    embeds: [{
+                        title: questionEmbed,
+                        thumbnail: { url: config.application.icon },
+                        color: config.application.color,
+                        description: textEmbed.join('\n'),
+                        footer: { text: `Par ${interaction.user.username}`, icon_url: interaction.user.avatarURL() },
+                        timestamp: new Date().toISOString(),
+                    }], fetchReply: true
+                })
+                for (let i = 0; i < resultats.length; i++) {
+                    sondage.react(chiffreEnLettre(i))
+                }
             }
         }
     }

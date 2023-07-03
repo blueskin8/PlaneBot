@@ -13,6 +13,7 @@ module.exports = (Client, interaction) => {
         if (interaction.commandName == "welcome-message") return require('../../systems/newMember/welcomeMessage.js').execute(Client, interaction)
         if (interaction.commandName == "giveaway-create") return require('../../systems/giveaway/commands/giveaway-create.js').execute(Client, interaction)
         if (interaction.commandName == "sondage") return require('../../systems/sondage/commands/sondage.js').execute(Client, interaction)
+        if (interaction.commandName == "sondages-clear") return require('../../systems/suggestion/commands/suggestionClear.js').execute(Client, interaction)
     }
     if (interaction.isButton()) {
         if (interaction.customId == "create-ticket") return require('../../systems/ticket/auto/create-channel.js').execute(Client, interaction)
