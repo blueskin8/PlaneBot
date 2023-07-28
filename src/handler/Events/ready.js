@@ -37,6 +37,8 @@ module.exports = async (Client) => {
     // await Client.application.commands.create(require('../../systems/giveaway/commands/giveaway-create.js').data)
     await Client.application.commands.create(require('../../systems/sondage/commands/sondage.js').data)
     await Client.application.commands.create(require('../../systems/suggestion/commands/suggestionClear.js').data)
+    await Client.application.commands.create(require('../../systems/staff/commands/staff.js').data)
+    // await Client.application.commands.create(require('../../systems/statistiques/commands/stats.js').data)
 
     console.log('  _____  _                  ____        _                   __           _   _                        _   _ ')
     console.log(' |  __ \\| |                |  _ \\      | |                 /_/          | | (_)                      | | | |')
