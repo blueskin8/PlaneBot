@@ -25,7 +25,8 @@ module.exports = {
         staffRole: "1076848873022160927",
         privatevoice: "929491423844241488",
         bienvenueChannel: "872174167385059328",
-        statutChannel: "872174178462224384"
+        statutChannel: "872174178462224384",
+        suggestionChannel: "872174179204616253"
     },
     panel: {
         validIPs: ["::1", "::ffff:192.168.0.254"] // IP de blueskin8

@@ -10,7 +10,7 @@ const LogLine = require('../../systems/logs/LogLine.js');
 module.exports = async (Client, message) => {
     new LogLine('BotLog', `nouveau message : \n    Contenu : ${message.content.toString().split('\n').join('\n              ')}\n    Auteur : ${message.author.id} : ${message.author.username}; MessageId: ${message.id}\n    MessageChannel : ${message.channel.name} ; ${message.channel.id}\n    MessageURL : ${message.url}`);
 
-    if (message.channel.id === '1032258360332009512' && !message.author.bot) {
+    if (message.channel.id === config.configuration.suggestionChannel && !message.author.bot) {
         require('../../systems/suggestion/suggestion.js').execute(Client, message)
     }
 }

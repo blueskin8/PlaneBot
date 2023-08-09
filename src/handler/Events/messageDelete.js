@@ -10,7 +10,7 @@ const LogLine = require('../../systems/logs/LogLine')
 module.exports = async (Client, message) => {
     new LogLine("BotLog", `message supprimé : \n    Contenu : ${message.content.toString().split('\n').join('\n              ')}\n    Auteur : ${message.author.id} ; ${message.author.username} ; MessageId: ${message.id}\n    MessageChannel : ${message.channel.name} ; ${message.channel.id}`)
 
-    if (message.channel.id === '1032258360332009512' && message.author.bot) {
+    if (message.channel.id === config.configuration.suggestionChannel && message.author.bot) {
         require('../../systems/suggestion/suggestionDelete.js').execute(Client, message)
     }
 }

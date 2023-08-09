@@ -8,8 +8,6 @@ module.exports = {
      */
     execute: async (Client, message) => {
         const thread = message.thread;
-        if (thread != null) {
-            thread.delete();
-        }
+        if (thread) thread.delete();
     }
 }

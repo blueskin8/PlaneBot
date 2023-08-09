@@ -8,8 +8,8 @@ const LogLine = require('../../systems/logs/LogLine')
  * @param {Discord.Message} message
  */
 module.exports = async (Client, react, user) => {
-    if (react.message.channel.id === '1032258360332009512' && !user.bot) {
-        require('../../systems/suggestion/suggestion').manageReactions(Client, react, user)
+    if (react.message.channel.id === config.configuration.suggestionChannel && !user.bot) {
+        require('../../systems/suggestion/suggestion').manageReactions(Client, react, user, "add")
     }
     // if (user.bot) {
     //     require('../../systems/sondage/commands/sondage').manageReactions(Client, react, user)

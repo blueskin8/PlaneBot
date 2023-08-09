@@ -16,10 +16,10 @@ module.exports = async (Client) => {
 
     Client.user.setPresence(config.application.presence)
 
-    const commandFile = fs.readdirSync('D:\\Application\\Github\\PlaneBot\\src\\systems')
+    const commandFile = fs.readdirSync(process.cwd() + "\\src\\systems")
     try {
         commandFile.forEach(async uwu => {
-            fs.readdirSync("D:\\Application\\Github\\PlaneBot\\src\\systems\\" + uwu).filter(async commandFolder => {
+            fs.readdirSync(process.cwd() + "\\src\\systems\\" + uwu).filter(async commandFolder => {
                 if (commandFolder.endsWith(".js")) {
                     if (require("../../systems/" + uwu + "/" + commandFolder).data) {
                         await Client.application.commands.create(require("../../systems/" + uwu + "/" + commandFolder).data)
